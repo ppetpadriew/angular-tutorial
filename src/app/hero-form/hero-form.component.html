@@ -18,7 +18,7 @@
             <input type="text" class="form-control" id="alterEgo" [(ngModel)]="model.alterEgo" name="alterEgo">
         </div>
 
-        <label for="power"></label>
+        <label for="power">Power</label>
         <select id="power" class="form-control" [(ngModel)]="model.power" name="power" required>
             <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
         </select>

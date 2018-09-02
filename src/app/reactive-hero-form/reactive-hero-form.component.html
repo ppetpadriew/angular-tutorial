@@ -1,4 +1,4 @@
-<h1>Hero Form</h1>
+<h1>Reactive Hero Form</h1>
 <form [formGroup]="reactiveHeroForm">
     <div class="form-group">
         <label for="name">Name</label>
@@ -8,4 +8,40 @@
                formControlName="name">
         {{spy.className}}
     </div>
+    <div class="alert alert-danger" *ngIf="name.invalid">
+        <div *ngIf="name.hasError('required')">
+            Name is required.
+        </div>
+        <div *ngIf="name.hasError('minlength')">
+            Name is too short.
+        </div>
+        <div *ngIf="name.errors['asyncUnique']">
+            Name must be unique.
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="alterEgo">AlterEgo</label>
+        <input type="text" class="form-control" id="alterEgo"
+               [(ngModel)]="model.alterEgo"
+               #spy
+               formControlName="alterEgo">
+        {{spy.className}}
+    </div>
+    <div class="form-group">
+        <label for="power">Power</label>
+        <select id="power" class="form-control" [(ngModel)]="model.power" #spy formControlName="power">
+            <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+        </select>
+    </div>
+    <div class="alert alert-danger" *ngIf="power.invalid">
+        <div *ngIf="power.hasError('required')">
+            Power is required.
+        </div>
+    </div>
+    <button type="submit"
+            [disabled]="reactiveHeroForm.invalid || reactiveHeroForm.pending"
+            class="btn btn-success">
+        Submit
+    </button>
+    <button type="button" (click)="reactiveHeroForm.reset()" class="btn btn-danger">Reset</button>
 </form>
