@@ -1,0 +1,11 @@
+<h1>Hero Form</h1>
+<form [formGroup]="reactiveHeroForm">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name"
+               [(ngModel)]="model.name"
+               #spy
+               formControlName="name">
+        {{spy.className}}
+    </div>
+</form>
