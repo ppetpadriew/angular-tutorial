@@ -1,22 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Hero} from '../models/Hero';
+import {CustomValidators} from '../custom-validators';
 
-
-class CustomValidators {
-    public static asyncUnique(control: FormControl) {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                const db = ['turbo'];
-                if (db.indexOf(control.value) !== -1) {
-                    resolve({asyncUnique: true});
-                }
-
-                resolve(null);
-            }, 2000);
-        });
-    }
-}
 
 @Component({
     selector: 'app-reactive-hero-form',
@@ -41,8 +27,8 @@ export class ReactiveHeroFormComponent implements OnInit {
     constructor(fb: FormBuilder) {
         this.reactiveHeroForm = fb.group({
             name: [null, [Validators.required, Validators.minLength(3)], [CustomValidators.asyncUnique]],
-            power: [null, Validators.required],
-            alterEgo: []
+            power: [null, [Validators.required]],
+            alterEgo: [null, [CustomValidators.unique]]
         });
         // Above is an alternative syntax of below
         // this.reactiveHeroForm = new FormGroup({
