@@ -6,6 +6,7 @@ import {AppComponent} from './app.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HeroFormComponent} from './hero-form/hero-form.component';
 import {ReactiveHeroFormComponent} from './reactive-hero-form/reactive-hero-form.component';
+import {UniqueDirective} from './directives/unique-directive';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import {ReactiveHeroFormComponent} from './reactive-hero-form/reactive-hero-form
         AppComponent,
         HeroFormComponent,
         ReactiveHeroFormComponent,
+        UniqueDirective
     ],
     imports: [
         BrowserModule,
